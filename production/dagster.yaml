@@ -5,15 +5,15 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
+  project: default
   destination:
     name: ''
     namespace: dagster
     server: 'https://kubernetes.default.svc'
   source:
-    path: helm/dagster
-    repoURL: 'https://github.com/dagster-io/dagster'
+    path: charts/dagster
+    repoURL: 'https://github.com/slamer59/dagster-argocd-configuration.git'
     targetRevision: HEAD
-  project: default
   syncPolicy:
     automated:
       prune: true
