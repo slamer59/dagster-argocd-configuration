@@ -213,7 +213,7 @@ dagster-user-deployments:
   enabled: true
 
   # If you plan on deploying user code in a separate Helm release, set this to false.
-  enableSubchart: false
+  enableSubchart: true
 
   # List of unique deployments
   deployments:
