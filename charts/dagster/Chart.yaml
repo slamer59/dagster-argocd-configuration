@@ -19,3 +19,6 @@ dependencies:
 - name: dagster
   version: "0.13.13"
   repository: "https://dagster-io.github.io/helm"
+- condition: dagster-user-deployments.enableSubchart
+  name: dagster-user-deployments
+  version: "0.13.13"
