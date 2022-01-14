@@ -23,3 +23,4 @@ dependencies:
   name: dagster-user-deployments
   version: "0.13.14"
   repository: "https://dagster-io.github.io/helm"
+  alias: dagster-user-deployments-2

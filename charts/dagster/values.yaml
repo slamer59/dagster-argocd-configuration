@@ -35,7 +35,7 @@ dagit:
     # When a tag is not supplied for a Dagster provided image,
     # it will default as the Helm chart version.
     repository: "docker.io/dagster/dagster-celery-k8s"
-    tag: 0.13.13
+    tag: 0.13.14
     pullPolicy: Always
 
   service:
@@ -51,7 +51,7 @@ dagit:
   workspace:
     enabled: false
     servers:
-      - host: "k8s-example-user-code-1"
+      - host: "k8s-example-user-code-2"
         port: 3030
         name: "user-code-example"
 
@@ -208,7 +208,7 @@ pythonLogs: {}
 #
 # All user code will be invoked within the images.
 ####################################################################################################
-dagster-user-deployments:
+dagster-user-deployments-2:
   # Creates a workspace file with the gRPC servers hosting your user code.
   enabled: true
 
@@ -217,11 +217,11 @@ dagster-user-deployments:
 
   # List of unique deployments
   deployments:
-    - name: "k8s-example-user-code-1"
+    - name: "k8s-example-user-code-2"
       image:
         # When a tag is not supplied, it will default as the Helm chart version.
         repository: "docker.io/dagster/user-code-example"
-        tag: 0.13.13
+        tag: 0.13.14
 
         # Change with caution! If you're using a fixed tag for pipeline run images, changing the
         # image pull policy to anything other than "Always" will use a cached/stale image, which is
@@ -322,7 +322,7 @@ pipelineRun:
     # When a tag is not supplied for a Dagster provided image,
     # it will default as the Helm chart version.
     repository: "docker.io/dagster/user-code-example"
-    tag: 0.13.13
+    tag: 0.13.14
     pullPolicy: Always
 
   # Additional environment variables to set.
@@ -441,7 +441,7 @@ runLauncher:
         # When a tag is not supplied for a Dagster provided image,
         # it will default as the Helm chart version.
         repository: "docker.io/dagster/dagster-celery-k8s"
-        tag: 0.13.13
+        tag: 0.13.14
         pullPolicy: Always
 
       # Support overriding the name prefix of Celery worker pods
@@ -855,7 +855,7 @@ dagsterDaemon:
     # When a tag is not supplied for a Dagster provided image,
     # it will default as the Helm chart version.
     repository: "docker.io/dagster/dagster-celery-k8s"
-    tag: 0.13.13
+    tag: 0.13.14
     pullPolicy: Always
 
   heartbeatTolerance: 300
