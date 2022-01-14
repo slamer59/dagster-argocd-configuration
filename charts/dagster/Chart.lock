@@ -5,5 +5,5 @@ dependencies:
 - name: dagster-user-deployments
   repository: https://dagster-io.github.io/helm
   version: 0.13.14
-digest: sha256:a4c87e2a4d2f131b6742e7d03db44aaf17e5363108c7814755185b8b8870c2cd
-generated: "2022-01-14T13:33:08.1330658+01:00"
+digest: sha256:1af4ad78c2054e7c315ecf7d845b5e5455ec3d435681e9fd3fe37b6bf5a607fc
+generated: "2022-01-14T15:42:30.0901383+01:00"
