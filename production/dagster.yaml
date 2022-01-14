@@ -5,7 +5,6 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
   destination:
     name: ''
     namespace: dagster
@@ -14,9 +13,14 @@ spec:
     path: charts/dagster
     repoURL: 'https://github.com/slamer59/dagster-argocd-configuration.git'
     targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+      - --upsert
