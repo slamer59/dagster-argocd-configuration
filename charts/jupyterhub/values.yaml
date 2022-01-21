@@ -1,7 +1,3 @@
-# singleuser:
-#   profileList:
-#     - display_name: "Small: default"
-#       description: |
 # This file can update the JupyterHub Helm chart's default configuration values.
 ############################################################"
 # For reference see the configuration reference and default values, but make
@@ -12,11 +8,46 @@
 # Chart default values:     https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/HEAD/jupyterhub/values.yaml
 # Available chart versions: https://jupyterhub.github.io/helm-chart/
 ############################################################""
-#         A small job. 1 CPU, no GPU. This is the default.
-#       default: True
-#       kubespawner_override:
-#         cpu_limit: 2
-#         cpu_guarantee: 1
-#         mem_limit: "16G"
-#         mem_guarantee: "512M"
-#         extra_resource_limits: {}
+
+singleuser:
+  profileList:
+    - display_name: "Small: default"
+      description: |
+        A small job. 1 CPU, no GPU. This is the default.
+      default: True
+      kubespawner_override:
+        cpu_limit: 2
+        cpu_guarantee: 1
+        mem_limit: "16G"
+        mem_guarantee: "512M"
+        extra_resource_limits: {}
+  image:
+    # You should replace the "latest" tag with a fixed version from:
+    # https://hub.docker.com/r/jupyter/datascience-notebook/tags/
+    # Inspect the Dockerfile at:
+    # https://github.com/jupyter/docker-stacks/tree/HEAD/datascience-notebook/Dockerfile
+    name: jupyter/minimal-notebook:latest
+    tag: latest
+  extraFiles:
+    # jupyter_notebook_config reference: https://jupyter-notebook.readthedocs.io/en/stable/config.html
+    jupyter_notebook_config.json:
+      mountPath: /etc/jupyter/jupyter_notebook_config.json
+      # data is a YAML structure here but will be rendered to JSON file as our
+      # file extension is ".json".
+      data:
+        MappingKernelManager:
+          # cull_idle_timeout: timeout (in seconds) after which an idle kernel is
+          # considered ready to be culled
+          cull_idle_timeout: 1200 # default: 0
+
+          # cull_interval: the interval (in seconds) on which to check for idle
+          # kernels exceeding the cull timeout value
+          cull_interval: 120 # default: 300
+
+          # cull_connected: whether to consider culling kernels which have one
+          # or more connections
+          cull_connected: true # default: false
+
+          # cull_busy: whether to consider culling kernels which are currently
+          # busy running some code
+          cull_busy: false # default: false
