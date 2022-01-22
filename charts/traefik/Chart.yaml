@@ -1,6 +1,6 @@
 apiVersion: v2
-name: jupytherhub-argo
-description: jupyterhub Helm Chart for ArgoCD
+name: traefik-argo
+description: traefik Helm Chart for ArgoCD
 
 type: application
 
@@ -13,9 +13,9 @@ version: 0.1.0
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "1.16.0"
-
+appVersion: "1.0.0"
+# https://github.com/xcad2k/boilerplates  
 dependencies:
-- name: jupyterhub
-  version: "1.2.0"
-  repository: "https://jupyterhub.github.io/helm-chart/"
+- name: traefik
+  version: "10.9.1"
+  repository: "https://helm.traefik.io/traefik"
