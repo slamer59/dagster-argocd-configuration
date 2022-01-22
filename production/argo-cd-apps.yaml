@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps_of_apps
+  name: apps-of-apps
   labels:
     app.kubernetes.io/name: apps-of-apps
     app.kubernetes.io/part-of: argocd-production
 spec:
   destination:
     name: ''
-    namespace: default
+    namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
     path: production/
