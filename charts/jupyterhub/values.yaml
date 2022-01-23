@@ -36,6 +36,8 @@ singleuser:
     # jupyter_notebook_config reference: https://jupyter-notebook.readthedocs.io/en/stable/config.html
     jupyter_notebook_config.json:
       mountPath: /etc/jupyter/jupyter_notebook_config.py
+    lab-config:
+      mountPath: /etc/jupyter/labconfig/page_config.json
       # data is a YAML structure here but will be rendered to JSON file as our
       # file extension is ".json".
       data:

@@ -1,6 +1,6 @@
 dependencies:
 - name: jupyterhub
   repository: https://jupyterhub.github.io/helm-chart/
-  version: 1.1.3
-digest: sha256:4c2c41238148375f8dc5c1090a26f3472c168551b15223571b401308d00aa488
-generated: "2022-01-23T11:10:00.2972136+01:00"
+  version: 1.1.3-n283.h7ffa01a9
+digest: sha256:b332445e06fc43485a141abbadf287eb1e6a06fe5177e6a8c4f393ef0b589f7c
+generated: "2022-01-23T14:16:48.6721133+01:00"

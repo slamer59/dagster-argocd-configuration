@@ -16,3 +16,5 @@ The JupyterHub Helm chart is accompanied with an installation guide at [z2jh.jup
 Much of the initial groundwork for this documentation is information learned from the successful use of JupyterHub and Kubernetes at UC Berkeley in their [Data 8](http://data8.org/) program.
 
 ![](https://raw.githubusercontent.com/jupyterhub/zero-to-jupyterhub-k8s/HEAD/doc/source/_static/images/data8_massive_audience.jpg)
+
+[DSRI image](https://artifacthub.io/packages/helm/dsri-helm-charts/jupyterlab)
