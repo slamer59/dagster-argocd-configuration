@@ -10,6 +10,10 @@
 ############################################################""
 
 singleuser:
+  defaultUrl: "/lab"
+  extraEnv:
+    JUPYTERHUB_SINGLEUSER_APP: "jupyter_server.serverapp.ServerApp"
+    EDITOR: "vim"
   profileList:
     - display_name: "Small: default"
       description: |
@@ -26,12 +30,12 @@ singleuser:
     # https://hub.docker.com/r/jupyter/datascience-notebook/tags/
     # Inspect the Dockerfile at:
     # https://github.com/jupyter/docker-stacks/tree/HEAD/datascience-notebook/Dockerfile
-    name: jupyter/minimal-notebook:latest
-    tag: latest
+    name: jupyter/minimal-notebook
+    tag: python-3.9.7
   extraFiles:
     # jupyter_notebook_config reference: https://jupyter-notebook.readthedocs.io/en/stable/config.html
     jupyter_notebook_config.json:
-      mountPath: /etc/jupyter/jupyter_notebook_config.json
+      mountPath: /etc/jupyter/jupyter_notebook_config.py
       # data is a YAML structure here but will be rendered to JSON file as our
       # file extension is ".json".
       data:

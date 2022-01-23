@@ -1,0 +1,86 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "conda export",
+			"type": "shell",
+			"command": "conda env export --from-history | grep -v 'prefix' > environment.yml"
+		},
+		{
+			"label": "black",
+			"type": "shell",
+			"command": "C:\\Users\\thomas.pedot\\mamba-forge\\Scripts\\black",
+			"args": [
+				"${file}"
+			],
+			"dependsOn": [
+				"autoflake"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "autoflake",
+			"type": "shell",
+			"command": "C:\\Users\\thomas.pedot\\mamba-forge\\Scripts\\autoflake",
+			"args": [
+				"--in-place",
+				"--remove-all-unused-imports",
+				"${file}"
+			],
+			"dependsOn": [
+				"isort"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "isort",
+			"type": "shell",
+			"command": "C:\\Users\\thomas.pedot\\mamba-forge\\Scripts\\isort",
+			"args": [
+				"--multi-line=3",
+				"--trailing-comma",
+				"--force-grid-wrap=0",
+				"--use-parentheses",
+				"--line-width=88",
+				"${file}"
+			],
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "bridge-to-kubernetes.resource",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "traefik-7c48dbf949-",
+			"resourceType": "pod",
+			"ports": [
+				80
+			],
+			"targetCluster": "minikube",
+			"targetNamespace": "traefik",
+			"useKubernetesServiceEnvironmentVariables": false
+		}
+	]
+}

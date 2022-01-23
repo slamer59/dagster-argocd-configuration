@@ -1,0 +1,6 @@
+{
+    "recommendations": [
+        "tim-koehler.helm-intellisense",
+        "ms-kubernetes-tools.vscode-kubernetes-tools"
+    ]
+}
