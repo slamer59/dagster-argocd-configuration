@@ -12,8 +12,8 @@
 singleuser:
   defaultUrl: "/lab"
   extraEnv:
-    JUPYTERHUB_SINGLEUSER_APP: "jupyter_server.serverapp.ServerApp"
-    EDITOR: "vim"
+    - JUPYTERHUB_SINGLEUSER_APP: "jupyter_server.serverapp.ServerApp"
+    - EDITOR: "vim"
   profileList:
     - display_name: "Small: default"
       description: |
@@ -31,29 +31,21 @@ singleuser:
     # Inspect the Dockerfile at:
     # https://github.com/jupyter/docker-stacks/tree/HEAD/datascience-notebook/Dockerfile
     name: jupyter/minimal-notebook
-    tag: python-3.9.7
-  extraFiles:
-    # jupyter_notebook_config reference: https://jupyter-notebook.readthedocs.io/en/stable/config.html
-    jupyter_notebook_config.json:
-      mountPath: /etc/jupyter/jupyter_notebook_config.py
-    lab-config:
-      mountPath: /etc/jupyter/labconfig/page_config.json
-      # data is a YAML structure here but will be rendered to JSON file as our
-      # file extension is ".json".
-      data:
-        MappingKernelManager:
-          # cull_idle_timeout: timeout (in seconds) after which an idle kernel is
-          # considered ready to be culled
-          cull_idle_timeout: 1200 # default: 0
+    tag: python-3.9.7    
+  lifecycleHooks:
+    postStart:
+      exec:
+        command:
+          - "sh"
+          - "-c"
+          - >
+            cp -r /tmp/environment.yaml /home/jovyan;
 
-          # cull_interval: the interval (in seconds) on which to check for idle
-          # kernels exceeding the cull timeout value
-          cull_interval: 120 # default: 300
-
-          # cull_connected: whether to consider culling kernels which have one
-          # or more connections
-          cull_connected: true # default: false
-
-          # cull_busy: whether to consider culling kernels which are currently
-          # busy running some code
-          cull_busy: false # default: false
+config:
+  jupyterhub:
+    cull:
+      # Cull after 30min of inactivity
+      every: 300
+      timeout: 1800
+      # No pods over 12h long
+      maxAge: 43200

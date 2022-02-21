@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    com.centurylinklabs.watchtower.enable: 'false'
+    kompose.cmd: C:\windows\system32\kompose.exe convert -c
+    kompose.version: 1.16.0 (0c01309)
+  labels:
+    io.kompose.service: appsmith
+  name: appsmith
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: appsmith
+    spec:
+      containers:
+        - image: index.docker.io/appsmith/appsmith-ce
+          name: appsmith
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 9001
+          resources: {}
+      restartPoli

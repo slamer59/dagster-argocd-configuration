@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    com.centurylinklabs.watchtower.enable: 'false'
+  labels:
+    io.kompose.service: appsmith
+  name: appsmith
+spec:
+  ports:
+    - name: '80'
+      port: 80
+      targetPort: 80
+    - name: '443'
+      port: 443
+      targetPort: 443
+    - name: '9001'
+      port: 9001
+      targetPort: 9001
+  selector:
+    io.kompose.service: appsmith
