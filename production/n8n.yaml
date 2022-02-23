@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+  namespace: n8n
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  destination:
+    name: ''
+    namespace: n8n
+    server: 'https://kubernetes.default.svc'
+  source:
+    chart: n8n
+    repoURL: https://truecharts.org
+    targetRevision: 1.0.7
+    helm:
+      releaseName: n8n
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - --upsert
